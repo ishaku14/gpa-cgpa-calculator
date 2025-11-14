@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="calculate your cgpa with ease.">
+  <title>CGPA calculate</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="level-setup">
+    <h2>Student Information</h2>
+    <div class="form-group">
+      <label for="student-level">Select Your Level:</label>
+      <select name="" id="level-input">
+        <option value="">---select level---</option>
+        <option value="100">100</option>
+        <option value="200">200</option>
+        <option value="300">300</option>
+        <option value="400">400</option>
+        <option value="500">500</option>
+        <option value="600">600</option>
+      </select>
+      <!-- <button type="button" class="submit-level" id="submit-level">submit</button> -->
+    </div>
+
+    <div class="form-group hidden" id="previous-cgpa-group">
+      <label for="previous-cgpa">Enter Your Previous CGPA:</label>
+      <input type="number" id="previous-cgpa" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
+      <button class="prev-cgpa-submit-button cgpa-submit-button">Enter</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <form class="course-input-form">
+      <input type="text" class="course-code-input" id="js-course-code" placeholder="course code">
+      <input type="number" class="unit-input" id="js-unit" placeholder="unit" min="1" max="6">
+      <select name="" id="js-grade" class="grade-input">
+        <option value="" disabled selected>Select grade</option>
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+        <option value="E">E</option>
+        <option value="F">F</option>
+      </select>
+    </form>
+
+    <select id="js-semester-select" class="semester-dropdown">
+      <option value="" disabled >select semester</option>
+      <option value="first" selected>First semester</option>
+      <option value="second">Second semester</option>
+    </select>
+
+    <div class="action-elements">
+      <div type="button" class="add-button" id="js-add-button">
+        Add course
+      </div>
+
+      <button class="calculate-button" id="js-calculate">
+        calculate
+      </button>
+
+    </div>
+
+    <button class="calculate-cgpa" id="cgpa-button">calculate cgpa</button>
+
+  </div>
+
+
+
+  <div class="cgpa-container js-cgpa-container"></div>
+
+  <div class="course-display-container js-course-display-container">
+  </div>
+
+  <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
