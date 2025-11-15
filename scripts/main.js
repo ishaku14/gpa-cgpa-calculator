@@ -1,5 +1,3 @@
-import '../tests/test.js';
-
 const firstSemesterCourses = [];
 const secondSemesterCourses = [];
 
@@ -38,7 +36,10 @@ function getCourses() {
   const unit = Number(unitElement.value);
   const grade = gradeElement.value;
 
-  
+  if(!coursecode || !unit || !grade) {
+    alert('Please fill all the fields');
+    return;
+  }
 
   if(semester === 'first') {
     firstSemesterCourses.push({
