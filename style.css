@@ -19,7 +19,8 @@ h2 {
 }
 
 .level-setup,
-.container {
+.container,
+.course-container {
   background-color: white;
   margin-bottom: 24px;
   padding: 2rem 1.4rem;
@@ -30,9 +31,9 @@ h2 {
   max-width: 700px;
 }
 
-.form-group {
+/* .form-group {
 
-}
+} */
 
 .form-group label {
   display: block;
@@ -74,16 +75,19 @@ h2 {
 .course-input-form {
   width: 100%;
   margin-bottom: 18px;
-  display: grid;
-  grid-template-columns: 3fr 1fr 2fr;
-  gap: 12px;
+  display: grid; 
+  grid-template-columns: 2.5fr 1.5fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
 }
 
 .course-input-form input, 
 .course-input-form select {
   padding: 12px;
+  width: 100%;
   border: 1px solid rgb(216, 216, 216);
   border-radius: 8px;
+
 }
 
 .semester-dropdown {
@@ -118,4 +122,49 @@ h2 {
 
 #cgpa-button {
   background-color: rgb(34, 33, 33);
+}
+
+.semester-toggle {
+  display: flex;
+  /* justify-content: space-between; */
+  width: 100%;
+  gap: 3px;
+  padding: 4px 0;
+  margin-bottom: 30px;
+}
+
+.semester-toggle div {
+  width: 100%;
+  /* text-align: center; */
+}
+
+.semester-toggle div:hover:after {
+  display: block;
+  background-color: rgb(59, 124, 221);
+  content: "";
+  height: 4px;
+}
+
+.course-display-container {
+  display: grid;
+  gap: 14px;
+}
+
+.course {
+  display: grid;
+  grid-template-columns: 20px 100px 50px 50px 1fr;
+  /* grid-template-columns: repeat(5, 1fr); */
+  white-space: nowrap;
+  gap: 12px;
+  align-items: center;
+}
+
+.course div {
+  width: 100%;
+}
+
+.delete-icon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
 }

@@ -1,9 +1,42 @@
-const firstSemesterCourses = [];
+const firstSemesterCourses = [
+  {
+    coursecode: "CSC 300",
+    grade: "B",
+    unit: 2
+  },
+
+  {
+    coursecode: "CSC 300",
+    grade: "B",
+    unit: 2
+  },
+
+  {
+    coursecode: "CSC 300",
+    grade: "B",
+    unit: 2
+  }
+];
+
 const secondSemesterCourses = [];
 
 let currentLevel = null;
 let previousCgpa = null;
 let semester = 'first'
+
+//first and second semester toggle 
+const firstSemToggleElm = document.querySelector('.first-semester-courses');
+const secondSemToggleElm = document.querySelector('.second-semester-courses');
+
+firstSemToggleElm.addEventListener('click', () => {
+  semester = 'first';
+  renderCourses();
+});
+
+secondSemToggleElm.addEventListener('click', () => {
+  semester = 'second';
+  renderCourses();
+});
 
 //handles the level selection logic, if the user selects a level that is not 100L, then an input field to insert previous cgpa is displayed on the page
 const levelSelectElement = document.getElementById('level-input');
@@ -55,6 +88,8 @@ function getCourses() {
       grade
     });
   }
+
+  console.log(firstSemesterCourses)
 
   courseCodeElement.value = '';
   unitElement.value = '';
@@ -121,19 +156,20 @@ function renderCourses() {
 
   const courses = semester === 'first'? firstSemesterCourses: secondSemesterCourses;
 
-  courses.forEach(course => {
+  courses.forEach((course, i) => {
     coursesHtml += `
       <div class="course">
+        <div>${i + 1}.</div>
         <div>${course.coursecode}</div>
         <div>${course.unit}</div>
         <div>${course.grade}</div>
-        <button class="delete-button js-delete-button">Delete</button>
+        <img src="icons/delete-icon.svg" alt="delete icon" class="delete-icon js-delete-icon">
       </div>
     `;
   });
   document.querySelector('.js-course-display-container').innerHTML = coursesHtml;
 
-  document.querySelectorAll('.js-delete-button').forEach((button, i) => {
+  document.querySelectorAll('.js-delete-icon').forEach((button, i) => {
     button.addEventListener('click', ()=> {
       courses.splice(i, 1);
       renderCourses();
