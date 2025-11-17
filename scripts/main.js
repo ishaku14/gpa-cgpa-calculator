@@ -1,89 +1,20 @@
-const firstSemesterCourses = JSON.parse(localStorage.getItem('firstSemesterCourses')) || [];
-const secondSemesterCourses = JSON.parse(localStorage.getItem('secondSemesterCourses')) || [];
-
-let currentLevel = null;
-let previousCgpa = null;
-let semester = 'first';
+import {state} from './state.js';
+import {firstSemesterCourses, secondSemesterCourses, getCourses, renderCourses} from './course.js';
+import { calculateGpa, calculateCgpa } from './calculation.js';
 
 renderCourses();
-
-function getCourses() {
-  const courseCodeElement = document.getElementById('js-course-code');
-  const unitElement = document.getElementById('js-unit');
-  const gradeElement = document.getElementById('js-grade')
-
-  const coursecode = courseCodeElement.value;
-  const unit = Number(unitElement.value);
-  const grade = gradeElement.value;
-
-  if(!coursecode || !unit || !grade) {
-    alert('Please fill all the fields');
-    return;
-  }
-
-  if(semester === 'first') {
-    firstSemesterCourses.push({
-      coursecode,
-      unit,
-      grade
-    });
-    
-  } else if (semester === 'second') {
-    secondSemesterCourses.push({
-      coursecode,
-      unit,
-      grade
-    });
-  }
-
-  localStorage.setItem('firstSemesterCourses', JSON.stringify(firstSemesterCourses));
-  localStorage.setItem('secondSemesterCourses', JSON.stringify(secondSemesterCourses));
-
-  courseCodeElement.value = '';
-  unitElement.value = '';
-  gradeElement.value = '';
-}
-
-//this rendercourses function displays the courses on the page dependinng on the semester that is active
-function renderCourses() {
-  let coursesHtml = '';
-
-  const courses = semester === 'first'? firstSemesterCourses: secondSemesterCourses;
-
-  courses.forEach((course, i) => {
-    coursesHtml += `
-      <div class="course">
-        <div>${i + 1}.</div>
-        <div>${course.coursecode}</div>
-        <div>${course.unit}</div>
-        <div>${course.grade}</div>
-        <img src="icons/delete-icon.svg" alt="delete icon" class="delete-icon js-delete-icon">
-      </div>
-    `;
-  });
-  document.querySelector('.js-course-display-container').innerHTML = coursesHtml;
-
-  document.querySelectorAll('.js-delete-icon').forEach((button, i) => {
-    button.addEventListener('click', ()=> {
-      courses.splice(i, 1);
-      localStorage.setItem(courses === firstSemesterCourses? 'firstSemesterCourses': 'secondSemesterCourses', JSON.stringify(courses));
-      console.log(firstSemesterCourses)
-      renderCourses();
-    });
-  });
-}
 
 //first and second semester toggle 
 const firstSemToggleElm = document.querySelector('.first-semester-courses');
 const secondSemToggleElm = document.querySelector('.second-semester-courses');
 
 firstSemToggleElm.addEventListener('click', () => {
-  semester = 'first';
+  state.semester = 'first';
   renderCourses();
 });
 
 secondSemToggleElm.addEventListener('click', () => {
-  semester = 'second';
+  state.semester = 'second';
   renderCourses();
 });
 
@@ -92,20 +23,18 @@ const levelSelectElement = document.getElementById('level-input');
 const previousCgpaContainer = document.getElementById('previous-cgpa-group');
 
 levelSelectElement.addEventListener('change', ()=> {
-  currentLevel = Number(levelSelectElement.value);
-  currentLevel === 100? previousCgpaContainer.classList.add('hidden'): previousCgpaContainer.classList.remove('hidden');
+  state.currentLevel = Number(levelSelectElement.value);
+  state.currentLevel === 100? previousCgpaContainer.classList.add('hidden'): previousCgpaContainer.classList.remove('hidden');
 });
 
 document.querySelector('.cgpa-submit-button').addEventListener('click', ()=> {
   const previousCgpaInput = document.getElementById('previous-cgpa');
-
-  previousCgpa =  Number(previousCgpaInput.value);
-
+  state.previousCgpa =  Number(previousCgpaInput.value);
 });
 
 const semesterElement = document.getElementById('js-semester-select');
 semesterElement.addEventListener('change', (event)=> {
-  semester = event.target.value;
+  state.semester = event.target.value;
   renderCourses();
 });
 
@@ -114,60 +43,13 @@ document.getElementById('js-add-button').addEventListener('click', ()=> {
   renderCourses();
 });
 
-
 document.getElementById('js-calculate').addEventListener('click', ()=> {
   renderGpa();
 });
 
-function calculateGpa() {
-  const courses = semester === 'first'? firstSemesterCourses: secondSemesterCourses;
-
-  let totalUnits = 0;
-  let totalGradePoints = 0;
-  const gradeScale = {
-    A: 5,
-    B: 4,
-    C: 3,
-    D: 2,
-    E: 1,
-    F: 0
-  }
-
-  courses.forEach((course, i) => {
-    totalUnits += course.unit;
-    totalGradePoints += gradeScale[course.grade] * course.unit;
-  });
-
-  const semesterGpa = totalGradePoints / totalUnits;
-
-  return semesterGpa;
-}
-
-function calculateCgpa() {
-  const courses = [...firstSemesterCourses, ...secondSemesterCourses];
-
-  let totalUnits = 0;
-  let totalGradePoints = 0;
-  const gradeScale = {A: 5, B: 4, C: 3, D: 2, E: 1, F: 0};
-  
-  courses.forEach((course, i) => {
-    totalUnits += course.unit;
-    totalGradePoints += gradeScale[course.grade] * course.unit;
-  });
-
-  let cgpa = totalUnits > 0? totalGradePoints/totalUnits: 0;
-
-  if(previousCgpa && currentLevel !== 100) {
-    cgpa = (previousCgpa + cgpa) / 2;
-  }
-
-  return cgpa;
-}
-
 //this block of code just displays the gpa for a semester on the page
 function renderGpa() {
   const gpa = calculateGpa();
-
   document.querySelector('.js-cgpa-container').innerHTML = `
     GPA: ${gpa.toFixed(2)}
   `
