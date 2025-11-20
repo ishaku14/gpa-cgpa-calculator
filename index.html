@@ -26,13 +26,13 @@
 
     <div class="form-group hidden" id="previous-cgpa-group">
       <label for="previous-cgpa">Enter Your Previous CGPA:</label>
-      <input type="number" id="previous-cgpa" class="previous-cgpa-input" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
-      <button class="prev-cgpa-submit-button cgpa-submit-button">Enter</button>
+      <input name="prev-cgpa" type="number" id="previous-cgpa" class="previous-cgpa-input" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
+      <input name="prev-cgpa" type="submit" class="prev-cgpa-submit-button cgpa-submit-button" value="Enter">
     </div>
   </div>
 
   <div class="container">
-    <form class="course-input-form">
+    <form name="course-input-form" class="course-input-form">
       <input type="text" class="course-code-input" id="js-course-code" placeholder="course code">
       <input type="number" class="unit-input" id="js-unit" placeholder="unit" min="1" max="6">
       <select name="" id="js-grade" class="grade-input">
@@ -54,21 +54,21 @@
 
     <div class="action-elements">
       <div type="button" class="add-button" id="js-add-button">
-        Add course
+        + Add course
       </div>
+      <div class="pop-up-message js-message"></div>
 
       <button class="calculate-button gpa-calculate-button" id="js-calculate">
         calculate GPA
       </button>
 
+      <button class="calculate-cgpa" id="cgpa-button">
+        calculate CGPA
+      </button>
     </div>
-
-    <button class="calculate-cgpa" id="cgpa-button">calculate CGPA</button>
-
   </div>
 
   <div class="cgpa-container js-cgpa-container"></div>
-
 
   <div class="course-container">
     <div class="semester-toggle">

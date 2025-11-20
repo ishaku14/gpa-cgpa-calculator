@@ -102,8 +102,10 @@ h2 {
   color: rgb(22, 141, 22);
   font-size: 0.9rem;
   font-weight: bold;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
   cursor: pointer;
+  color: #28A745;
+  color: black;
 }
 
 .gpa-calculate-button, 
@@ -167,4 +169,19 @@ h2 {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.pop-up-message {
+  font-weight: bold;
+  margin-top: 10px;
+  transition: 200ms;
+  margin-bottom: 12px;
+}
+
+.success {
+  color: rgb(21, 179, 21);
+}
+
+.error {
+  color: red;
 }
