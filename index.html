@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>Student Information</h2>
+  <h2>CGPA Calculator</h2>
   <div class="level-setup">
     <div class="form-group">
       <label for="level-input">Select Your Level:</label>
@@ -27,7 +27,7 @@
     <div class="form-group hidden" id="previous-cgpa-group">
       <label for="previous-cgpa">Enter Your Previous CGPA:</label>
       <input name="prev-cgpa" type="number" id="previous-cgpa" class="previous-cgpa-input" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
-      <input name="prev-cgpa" type="submit" class="prev-cgpa-submit-button cgpa-submit-button" value="Enter">
+      <button name="prev-cgpa" type="submit" class="prev-cgpa-submit-button cgpa-submit-button" aria-label="Submit previous CGPA" id="prev-cgpa-submit-button">Enter</button>
     </div>
   </div>
 
@@ -53,16 +53,16 @@
     </select>
 
     <div class="action-elements">
-      <div type="button" class="add-button" id="js-add-button">
+      <button type="button" class="add-button" id="js-add-button">
         + Add course
-      </div>
+      </button>
       <div class="pop-up-message js-message"></div>
 
       <button class="calculate-button gpa-calculate-button" id="js-calculate">
         calculate GPA
       </button>
 
-      <button class="calculate-cgpa" id="cgpa-button">
+      <button class="calculate-cgpa" id="cgpa-button" aria-label="Calculate CGPA">
         calculate CGPA
       </button>
     </div>
@@ -72,8 +72,8 @@
 
   <div class="course-container">
     <div class="semester-toggle">
-      <div class="first-semester-courses">First Semester</div>
-      <div class="second-semester-courses">Second Semester</div>
+      <button class="first-semester-courses">First Semester</button>
+      <button class="second-semester-courses">Second Semester</button>
     </div>
     <div class="course-display-container js-course-display-container"></div>
   </div>

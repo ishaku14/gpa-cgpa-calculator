@@ -31,10 +31,6 @@ h2 {
   max-width: 700px;
 }
 
-/* .form-group {
-
-} */
-
 .form-group label {
   display: block;
   font-size: 0.95rem;
@@ -99,13 +95,15 @@ h2 {
 }
 
 .add-button {
+  background-color: white;
+  border: none;
+  padding: 4px 12px;
   color: rgb(22, 141, 22);
   font-size: 0.9rem;
   font-weight: bold;
   margin-bottom: 18px;
   cursor: pointer;
   color: #28A745;
-  color: black;
 }
 
 .gpa-calculate-button, 
@@ -128,19 +126,19 @@ h2 {
 
 .semester-toggle {
   display: flex;
-  /* justify-content: space-between; */
   width: 100%;
   gap: 3px;
   padding: 4px 0;
   margin-bottom: 30px;
 }
 
-.semester-toggle div {
+.semester-toggle button {
+  background-color: transparent;
+  border: none;
   width: 100%;
-  /* text-align: center; */
 }
 
-.semester-toggle div:hover:after {
+.semester-toggle button:focus:after {
   display: block;
   background-color: rgb(59, 124, 221);
   content: "";
