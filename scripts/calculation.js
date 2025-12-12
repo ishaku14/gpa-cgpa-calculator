@@ -1,9 +1,9 @@
 import {state} from './state.js';
 import { firstSemesterCourses, secondSemesterCourses } from './course.js';
 
-export function calculateGpa() {
-  //selects the appropriate courses array based on the current semester in state
-  const courses = state.semester === 'first'? firstSemesterCourses: secondSemesterCourses;
+export function calculateGpa(semester) {
+  //selects courses based on the semester
+  const courses = semester === 'first'? firstSemesterCourses: secondSemesterCourses;
 
   let totalUnits = 0;
   let totalGradePoints = 0;
@@ -22,10 +22,7 @@ export function calculateGpa() {
     totalGradePoints += gradeScale[course.grade] * course.unit;
   });
 
-  //calculates semester gpa
-  const semesterGpa = totalGradePoints / totalUnits;
-
-  return semesterGpa;
+  return totalUnits > 0? totalGradePoints/totalUnits: 0;
 }
 
 export function calculateCgpa() {
