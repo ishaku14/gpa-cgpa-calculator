@@ -13,7 +13,7 @@
     <div class="form-group">
       <label for="level-input">Select Your Level:</label>
       <select id="level-input">
-        <option value="">---select level---</option>
+        <option value="" selected disabled>---select level---</option>
         <option value="100">100</option>
         <option value="200">200</option>
         <option value="300">300</option>
@@ -69,6 +69,26 @@
   </div>
 
   <div class="cgpa-container js-cgpa-container"></div>
+
+  <div class="results-card">
+    <h3>Result</h3>
+    <div class="result-row">
+      <span>First Semester GPA:</span>
+      <strong id="sem1-gpa"></strong>
+    </div>
+
+    <div class="result-row">
+      <span>Second Semester GPA:</span>
+      <strong id="sem2-gpa"></strong>
+    </div>
+    <hr>
+
+    <div class="result-row total">
+      <span>CGPA:</span>
+      <strong id="result-cgpa"></strong>
+    </div>
+  </div>
+
 
   <div class="course-container">
     <div class="semester-toggle">

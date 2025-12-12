@@ -2,12 +2,60 @@ import {state} from './state.js';
 import {firstSemesterCourses, secondSemesterCourses, getCourses, renderCourses} from './course.js';
 import { calculateGpa, calculateCgpa } from './calculation.js';
 
-renderCourses();
-
-
-//functionality to toggle between first and second semester courses
+const levelSelectElement = document.getElementById('level-input');
+const previousCgpaContainer = document.getElementById('previous-cgpa-group');
 const firstSemToggleElm = document.querySelector('.first-semester-courses');
 const secondSemToggleElm = document.querySelector('.second-semester-courses');
+const resultsCardElm = document.querySelector('.results-card');
+const firstSemGpaElm = document.getElementById('sem1-gpa');
+const secondSemGpaElm = document.getElementById('sem2-gpa');
+const cgpaDisplayElm = document.getElementById('result-cgpa');
+
+
+renderCourses();
+
+//handles enabling/disabling of action buttons based on level selection
+const addCourseBtn = document.getElementById('js-add-button');
+const calculateGpaBtn = document.getElementById('js-calculate');
+const calculateCgpaBtn = document.getElementById('cgpa-button');
+
+//initially disable buttons and show warning
+[addCourseBtn, calculateGpaBtn, calculateCgpaBtn].forEach(btn => btn.disabled = true);
+
+// Listen for level selection
+levelSelectElement.addEventListener('change', () => {
+  const selectedLevel = Number(levelSelectElement.value);
+  state.currentLevel = selectedLevel;
+  console.log('Current Level set to:', selectedLevel);
+
+  if(selectedLevel) {
+    // Enable buttons when a level is selected
+    [addCourseBtn, calculateGpaBtn, calculateCgpaBtn].forEach(btn => btn.disabled = false);
+  } else {
+    // Disable buttons if no level is selected
+    [addCourseBtn, calculateGpaBtn, calculateCgpaBtn].forEach(btn => btn.disabled = true);
+    alert('Please select a valid level to enable GPA and CGPA calculations.');
+  }
+
+  // Show/hide previous CGPA input for 200L+ students
+  state.currentLevel === 100? previousCgpaContainer.classList.add('hidden'): previousCgpaContainer.classList.remove('hidden');
+});
+
+
+//handles previous cgpa submission
+document.querySelector('.cgpa-submit-button').addEventListener('click', ()=> {
+  const previousCgpaInput = document.getElementById('previous-cgpa');
+  const prevCgpa = previousCgpaInput.value.trim();
+
+  if(isNaN(prevCgpa) || prevCgpa < 0 || prevCgpa > 5) {
+    alert('Please enter a valid CGPA between 0.00 and 5.00');
+    previousCgpaInput.value = '';
+    state.previousCgpa = null;
+  } else {
+    state.previousCgpa = Number(parseFloat(prevCgpa).toFixed(2));
+  }
+
+});
 
 firstSemToggleElm.addEventListener('click', () => {
   state.semester = 'first';
@@ -19,21 +67,7 @@ secondSemToggleElm.addEventListener('click', () => {
   renderCourses();
 });
 
-//functionality to handle level selection and previous cgpa input
-const levelSelectElement = document.getElementById('level-input');
-const previousCgpaContainer = document.getElementById('previous-cgpa-group');
-
-levelSelectElement.addEventListener('change', ()=> {
-  state.currentLevel = Number(levelSelectElement.value);
-  state.currentLevel === 100? previousCgpaContainer.classList.add('hidden'): previousCgpaContainer.classList.remove('hidden');
-});
-
-//handles previous cgpa submission
-document.querySelector('.cgpa-submit-button').addEventListener('click', ()=> {
-  const previousCgpaInput = document.getElementById('previous-cgpa');
-  state.previousCgpa =  Number(previousCgpaInput.value);
-});
-
+//handles semester selection from dropdown
 const semesterElement = document.getElementById('js-semester-select');
 semesterElement.addEventListener('change', (event)=> {
   state.semester = event.target.value;
@@ -53,14 +87,28 @@ document.getElementById('js-calculate').addEventListener('click', ()=> {
 
 //renders the gpa on the page
 function renderGpa() {
-  const gpa = calculateGpa();
-  document.querySelector('.js-cgpa-container').innerHTML = `
-    GPA: ${gpa.toFixed(2)}
-  `
+  if(firstSemesterCourses.length === 0 && secondSemesterCourses.length === 0) {
+    alert('No courses added!\nPlease add courses to calculate GPA.');
+    return;
+  }
+
+  const firstSemGpa = calculateGpa('first') || 0;
+  const secondSemGpa = calculateGpa('second') || 0;
+
+  firstSemGpaElm.textContent = firstSemGpa.toFixed(2);
+  secondSemGpaElm.textContent = secondSemGpa.toFixed(2);
+  
+  resultsCardElm.style.display = 'block';
 }
 
 ///calculates the cgpa when the cgpa button is clicked
 document.getElementById('cgpa-button').addEventListener('click', ()=> {
   const cgpa = calculateCgpa();
-  console.log(cgpa.toFixed(2));
+
+  if(firstSemesterCourses.length === 0 && secondSemesterCourses.length === 0) {
+    alert('No courses added!\nPlease add courses to calculate CGPA.');
+    return;
+  }
+
+  cgpaDisplayElm.textContent = cgpa.toFixed(2);
 });
