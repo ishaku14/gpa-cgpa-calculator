@@ -1,3 +1,5 @@
+index.html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +15,7 @@
     <div class="form-group">
       <label for="level-input">Select Your Level:</label>
       <select id="level-input">
-        <option value="">---select level---</option>
+        <option value="" selected disabled>---select level---</option>
         <option value="100">100</option>
         <option value="200">200</option>
         <option value="300">300</option>
@@ -21,13 +23,16 @@
         <option value="500">500</option>
         <option value="600">600</option>
       </select>
-      <!-- <button type="button" class="submit-level" id="submit-level">submit</button> -->
+      <div id="level-warning">
+        Please select your level to continue!
+      </div>
     </div>
 
     <div class="form-group hidden" id="previous-cgpa-group">
       <label for="previous-cgpa">Enter Your Previous CGPA:</label>
       <input name="prev-cgpa" type="number" id="previous-cgpa" class="previous-cgpa-input" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
-      <button name="prev-cgpa" type="submit" class="prev-cgpa-submit-button cgpa-submit-button" aria-label="Submit previous CGPA" id="prev-cgpa-submit-button">Enter</button>
+      <!-- <button name="prev-cgpa" type="submit" class="prev-cgpa-submit-button cgpa-submit-button" aria-label="Submit previous CGPA" id="prev-cgpa-submit-button">Enter</button> -->
+       <div id="prev-cgpa-warning">Please Enter your previous CGPA to continue!</div>
     </div>
   </div>
 
@@ -69,6 +74,26 @@
   </div>
 
   <div class="cgpa-container js-cgpa-container"></div>
+
+  <div class="results-card">
+    <h3>Result</h3>
+    <div class="result-row">
+      <span>First Semester GPA:</span>
+      <strong id="sem1-gpa"></strong>
+    </div>
+
+    <div class="result-row">
+      <span>Second Semester GPA:</span>
+      <strong id="sem2-gpa"></strong>
+    </div>
+    <hr>
+
+    <div class="result-row total">
+      <span>CGPA:</span>
+      <strong id="result-cgpa"></strong>
+    </div>
+  </div>
+
 
   <div class="course-container">
     <div class="semester-toggle">

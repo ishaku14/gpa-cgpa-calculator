@@ -1,3 +1,5 @@
+style.css
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -44,6 +46,17 @@ h2 {
   border-radius: 8px;
   width: 100%;
   margin-bottom: 12px;
+}
+
+#level-warning,
+#prev-cgpa-warning {
+  color: red;
+  font-size: 0.75rem;
+  margin-top: -4px;
+}
+
+#prev-cgpa-warning{
+  margin-top: 4px;
 }
 
 .hidden {
@@ -122,6 +135,63 @@ h2 {
 
 #cgpa-button {
   background-color: rgb(34, 33, 33);
+}
+
+.results-card {
+  background-color: white;
+  margin-bottom: 24px;
+  padding: 1rem 1.4rem;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  width: 90vw;
+  max-width: 700px;
+  display: none;
+}
+
+
+.results-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.results-card hr {
+  height: 3px;
+  border: none;
+  background-color: rgb(207, 207, 207);
+}
+
+.result-row strong {
+  font-weight: 700;
+  color: #000;
+  background: #f7f7f7;
+  padding: 4px 8px;
+  border-radius: 6px;
+  min-width: 55px;
+  text-align: center;
+}
+
+.result-row.total strong {
+  /* background: #000; */
+  background: #f7f7f7;
+  color: #fff;
+  color: black;
+}
+
+.result-row.total {
+  font-size: 1.05rem;
+  border-bottom: none;
+  padding-top: 15px;
 }
 
 .semester-toggle {
