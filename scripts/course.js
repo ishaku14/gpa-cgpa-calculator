@@ -21,9 +21,10 @@ export function getCourses() {
   //pushes the course to the appropriate semester array based on the current semester in state
   if(state.semester === 'first') {
     firstSemesterCourses.push({coursecode, unit, grade});
-    showMessage('Course Added successfully!', 'success')
+    showMessage('Course Added successfully!', 'success');
   } else {
     secondSemesterCourses.push({coursecode, unit, grade});
+    showMessage('Course Added successfully!', 'success');
   }
 
   //persists the courses to local storage
@@ -51,14 +52,16 @@ export function renderCourses() {
         <div>${course.coursecode}</div>
         <div>${course.unit}</div>
         <div>${course.grade}</div>
-        <img src="icons/delete-icon.svg" alt="delete icon" class="delete-icon js-delete-icon">
+        <button class="delete-button js-delete-button">
+          <img src="icons/delete-icon.svg" alt="delete icon" class="delete-icon js-delete-icon">
+        </button>
       </div>
     `;
   });
   document.querySelector('.js-course-display-container').innerHTML = coursesHtml;
 
   //adds event listeners to the delete icons for each course
-  document.querySelectorAll('.js-delete-icon').forEach((button, i) => {
+  document.querySelectorAll('.js-delete-button').forEach((button, i) => {
     button.addEventListener('click', ()=> {
       courses.splice(i, 1);
       localStorage.setItem(courses === firstSemesterCourses? 'firstSemesterCourses': 'secondSemesterCourses', JSON.stringify(courses));
@@ -76,6 +79,5 @@ function showMessage(text, type) {
 
   setTimeout(() => {
     messageElm.innerText = '';
-  }, 1000);
-
+  }, 1500);
 }

@@ -4,7 +4,7 @@
     This version includes multi-semester support, localStorage persistence, and level-based CGPA calculations.
 
 🚀 **Features**
-  1. Calculate GPAA for each semester
+  1. Calculate GPA for each semester
   2. Calculate CGPA across multiple semesters
   3. Supports First and Second Semester selection
   4. Level-based logic:
@@ -27,10 +27,3 @@
   2. CSS
   3. Vanilla JavaScript
   4. LocalStorage API
-
-    
-    
-    
-    
-    
-    

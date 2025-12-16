@@ -1,5 +1,3 @@
-main.js
-
 import {state} from './state.js';
 import {firstSemesterCourses, secondSemesterCourses, getCourses, renderCourses} from './course.js';
 import { calculateGpa, calculateCgpa } from './calculation.js';

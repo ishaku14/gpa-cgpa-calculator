@@ -1,5 +1,3 @@
-index.html
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +29,6 @@ index.html
     <div class="form-group hidden" id="previous-cgpa-group">
       <label for="previous-cgpa">Enter Your Previous CGPA:</label>
       <input name="prev-cgpa" type="number" id="previous-cgpa" class="previous-cgpa-input" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
-      <!-- <button name="prev-cgpa" type="submit" class="prev-cgpa-submit-button cgpa-submit-button" aria-label="Submit previous CGPA" id="prev-cgpa-submit-button">Enter</button> -->
        <div id="prev-cgpa-warning">Please Enter your previous CGPA to continue!</div>
     </div>
   </div>
@@ -50,30 +47,28 @@ index.html
         <option value="F">F</option>
       </select>
     </form>
-
+    
     <select id="js-semester-select" class="semester-dropdown">
       <option value="" disabled >select semester</option>
       <option value="first" selected>First semester</option>
       <option value="second">Second semester</option>
     </select>
-
+    
     <div class="action-elements">
       <button type="button" class="add-button" id="js-add-button">
         + Add course
       </button>
       <div class="pop-up-message js-message"></div>
-
-      <button class="calculate-button gpa-calculate-button" id="js-calculate">
+      
+      <button class="calculate-button gpa-calculate-button" id="js-calculate" aria-label="calculate GPA">
         calculate GPA
       </button>
-
+      
       <button class="calculate-cgpa" id="cgpa-button" aria-label="Calculate CGPA">
         calculate CGPA
       </button>
     </div>
   </div>
-
-  <div class="cgpa-container js-cgpa-container"></div>
 
   <div class="results-card">
     <h3>Result</h3>
@@ -81,25 +76,25 @@ index.html
       <span>First Semester GPA:</span>
       <strong id="sem1-gpa"></strong>
     </div>
-
+    
     <div class="result-row">
       <span>Second Semester GPA:</span>
       <strong id="sem2-gpa"></strong>
     </div>
     <hr>
-
+    
     <div class="result-row total">
       <span>CGPA:</span>
       <strong id="result-cgpa"></strong>
     </div>
   </div>
 
-
   <div class="course-container">
     <div class="semester-toggle">
       <button class="first-semester-courses">First Semester</button>
       <button class="second-semester-courses">Second Semester</button>
     </div>
+    
     <div class="course-display-container js-course-display-container"></div>
   </div>
 
