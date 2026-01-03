@@ -1,9 +1,9 @@
-**📘 GPA + CGPA Calculator**
+  GPA + CGPA Calculator
 
     An advanced GPA and CGPA calculator built with HTML, CSS, and JavaScript.
     This version includes multi-semester support, localStorage persistence, and level-based CGPA calculations.
 
-🚀 **Features**
+ Features
   1. Calculate GPA for each semester
   2. Calculate CGPA across multiple semesters
   3. Supports First and Second Semester selection
@@ -13,7 +13,7 @@
   7. Clean, responsive, modern UI
   8. Success and error notifications for user actions
 
-**🧮 How It Works**
+  How It Works
 
     **Adding a course**
       1. Enter course code, unit, and grade
@@ -21,7 +21,7 @@
       3. The course appears in the table and is saved to localStorage
       4. Success or error messages display based on input validity
 
-🛠️ Technologies Used
+  Technologies Used
 
   1. HTML5
   2. CSS

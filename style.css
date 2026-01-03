@@ -10,17 +10,20 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5rem 0;
+  padding-top: 10px;
 }
 
 h2 {
-  margin-bottom: 24px;
+  margin-bottom: 8px;
   font-size: 1.5rem;
 }
 
+.level-setup {
+  display: none;
+}
+
 .level-setup,
-.container,
-.course-container {
+.container {
   background-color: white;
   margin-bottom: 24px;
   padding: 2rem 1.4rem;
@@ -114,99 +117,6 @@ h2 {
   margin-bottom: 12px;
   cursor: pointer;
   color: #28A745;
-}
-
-.gpa-calculate-button, 
-#cgpa-button {
-  width: 100%;
-  color: white;
-  font-weight: bold;
-  background-color: rgb(59, 124, 221);
-  border: none;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 14px;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-
-#cgpa-button {
-  background-color: rgb(34, 33, 33);
-}
-
-.results-card {
-  background-color: white;
-  margin-bottom: 24px;
-  padding: 1rem 1.4rem;
-  border: none;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-  width: 90vw;
-  max-width: 700px;
-  display: none;
-}
-
-.results-card h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.result-row {
-  display: flex;
-  align-items: center;
-  column-gap: 10px;
-  font-size: 0.95rem;
-  color: #444;
-  margin-bottom: 8px;
-}
-
-.results-card hr {
-  height: 3px;
-  border: none;
-  background-color: rgb(207, 207, 207);
-}
-
-.result-row strong {
-  font-weight: 700;
-  color: #000;
-  background: #f7f7f7;
-  padding: 4px 8px;
-  border-radius: 6px;
-  min-width: 55px;
-  text-align: center;
-}
-
-.result-row.total strong {
-  background: #f7f7f7;
-  color: black;
-}
-
-.result-row.total {
-  font-size: 1.05rem;
-  border-bottom: none;
-  padding-top: 15px;
-}
-
-.semester-toggle {
-  display: flex;
-  width: 100%;
-  gap: 3px;
-  padding: 4px 0;
-  margin-bottom: 30px;
-}
-
-.semester-toggle button {
-  background-color: transparent;
-  border: none;
-  width: 100%;
-}
-
-.semester-toggle button:focus:after {
-  display: block;
-  background-color: rgb(59, 124, 221);
-  content: "";
-  height: 4px;
 }
 
 .course-display-container {

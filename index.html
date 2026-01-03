@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="calculate your cgpa with ease.">
-  <title>CGPA calculate</title>
+  <title>CGPA Calculator</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,19 +21,19 @@
         <option value="500">500</option>
         <option value="600">600</option>
       </select>
-      <div id="level-warning">
-        Please select your level to continue!
-      </div>
     </div>
 
     <div class="form-group hidden" id="previous-cgpa-group">
       <label for="previous-cgpa">Enter Your Previous CGPA:</label>
       <input name="prev-cgpa" type="number" id="previous-cgpa" class="previous-cgpa-input" placeholder="e.g., 4.25" min="0" max="5" step="0.01">
-       <div id="prev-cgpa-warning">Please Enter your previous CGPA to continue!</div>
     </div>
   </div>
 
   <div class="container">
+    <div>
+      <p id="cgpa">CGPA: 4.28</p>
+      <p id="semester-gpa">Semester GPA</p>
+    </div>
     <form name="course-input-form" class="course-input-form">
       <input type="text" class="course-code-input" id="js-course-code" placeholder="course code">
       <input type="number" class="unit-input" id="js-unit" placeholder="unit" min="1" max="6">
@@ -59,43 +59,10 @@
         + Add course
       </button>
       <div class="pop-up-message js-message"></div>
-      
-      <button class="calculate-button gpa-calculate-button" id="js-calculate" aria-label="calculate GPA">
-        calculate GPA
-      </button>
-      
-      <button class="calculate-cgpa" id="cgpa-button" aria-label="Calculate CGPA">
-        calculate CGPA
-      </button>
-    </div>
-  </div>
-
-  <div class="results-card">
-    <h3>Result</h3>
-    <div class="result-row">
-      <span>First Semester GPA:</span>
-      <strong id="sem1-gpa"></strong>
     </div>
     
-    <div class="result-row">
-      <span>Second Semester GPA:</span>
-      <strong id="sem2-gpa"></strong>
+    <div class="course-display-container js-course-display-container">
     </div>
-    <hr>
-    
-    <div class="result-row total">
-      <span>CGPA:</span>
-      <strong id="result-cgpa"></strong>
-    </div>
-  </div>
-
-  <div class="course-container">
-    <div class="semester-toggle">
-      <button class="first-semester-courses">First Semester</button>
-      <button class="second-semester-courses">Second Semester</button>
-    </div>
-    
-    <div class="course-display-container js-course-display-container"></div>
   </div>
 
   <script type="module" src="scripts/main.js"></script>

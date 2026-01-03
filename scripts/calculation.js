@@ -1,13 +1,7 @@
-import {state} from './state.js';
-import { firstSemesterCourses, secondSemesterCourses } from './course.js';
+import { state } from './state.js';
+import { courses } from './course.js'
 
-export function calculateGpa(semester) {
-  //selects courses based on the semester
-  const courses = semester === 'first'? firstSemesterCourses: secondSemesterCourses;
-
-  let totalUnits = 0;
-  let totalGradePoints = 0;
-  const gradeScale = {
+const gradeScale = {
     A: 5,
     B: 4,
     C: 3,
@@ -16,36 +10,39 @@ export function calculateGpa(semester) {
     F: 0
   }
 
+export function calculateGpa() {
+  let totalUnits = 0;
+  let totalGradePoints = 0;
+  
+  const targetSemester = state.semester === 'first' ? courses.firstSemester : courses.secondSemester;
+
   //calculates total units and total grade points
-  courses.forEach((course, i) => {
+  targetSemester.forEach((course, i) => {
     totalUnits += course.unit;
     totalGradePoints += gradeScale[course.grade] * course.unit;
   });
 
-  return totalUnits > 0? totalGradePoints/totalUnits: 0;
+  return totalUnits > 0 ? (totalGradePoints / totalUnits) : 0
 }
 
 export function calculateCgpa() {
-  //combines courses from both semesters
-  const courses = [...firstSemesterCourses, ...secondSemesterCourses];
-
-  let totalUnits = 0;
   let totalGradePoints = 0;
-  const gradeScale = {A: 5, B: 4, C: 3, D: 2, E: 1, F: 0};
+  let totalUnits = 0;
   
-  //calculates total units and total grade points
-  courses.forEach((course, i) => {
+  const totalCourses = [...courses.firstSemester, ... courses.secondSemester];
+  
+  totalCourses.forEach((course, i) => {
     totalUnits += course.unit;
     totalGradePoints += gradeScale[course.grade] * course.unit;
   });
+  
+  return totalUnits > 0 ? (totalGradePoints / totalUnits) : 0;
+}
 
-  //calculates cgpa
-  let cgpa = totalUnits > 0? totalGradePoints/totalUnits: 0;
-
-  //if previous cgpa exists and current level is not 100, averages the previous cgpa with the current cgpa
-  if(state.previousCgpa && state.currentLevel !== 100) {
-    cgpa = (state.previousCgpa + cgpa) / 2;
-  }
-
-  return cgpa;
+export const renderResults = () => {
+  const cgpaElement = document.getElementById('cgpa');
+  const gpaElement = document.getElementById('semester-gpa');
+  
+  cgpaElement.textContent = `CGPA: ${calculateCgpa().toFixed(2)}`;
+  gpaElement.textContent = `Semester GPA: ${calculateGpa().toFixed(2)}`;
 }

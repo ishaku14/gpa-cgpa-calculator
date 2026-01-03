@@ -2,5 +2,6 @@
 export const state = {
   semester: 'first',
   currentLevel: null,
-  previousCgpa: null
-} 
+  previousCgpa: null,
+  currentCgpa: 4.28
+}
