@@ -6,12 +6,17 @@ renderCourses();
 renderResults();
 
 
-//handles semester selection from dropdown
-const semesterElement = document.getElementById('js-semester-select');
-semesterElement.addEventListener('change', (event)=> {
-  state.semester = event.target.value;
-  renderCourses();
-  renderResults();
+//toggles between the two semesters
+const semesterRadioElms = document.querySelectorAll('input[name="semester"]');
+
+semesterRadioElms.forEach(radio => {
+  radio.addEventListener('change', () => {
+    if(radio.checked) {
+      state.semester = radio.value;
+      renderCourses();
+      renderResults();
+    }
+  })
 });
 
 //adds a course when the add button is clicked

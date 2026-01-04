@@ -43,6 +43,9 @@ export const renderResults = () => {
   const cgpaElement = document.getElementById('cgpa');
   const gpaElement = document.getElementById('semester-gpa');
   
-  cgpaElement.textContent = `CGPA: ${calculateCgpa().toFixed(2)}`;
-  gpaElement.textContent = `Semester GPA: ${calculateGpa().toFixed(2)}`;
+  cgpaElement.textContent = calculateCgpa().toFixed(2);
+
+  gpaElement.textContent = state.semester === 'first' ?
+    `First Semester GPA: ${calculateGpa().toFixed(2)}` :
+    `Second Semester GPA: ${calculateGpa().toFixed(2)}`;
 }
